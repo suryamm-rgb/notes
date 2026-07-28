@@ -1,0 +1,14 @@
+person:
+  name: Surya # double quotes or single quotes if you want to use special characters like # or : in the name
+  age: 35
+  gender: M
+  is_student: false
+  hobbies: # multiple hobbes can be listed in an array
+    - reading
+    - travelling
+    - hiking
+  address: # nested object
+    street: 123 Main St
+    city: mandya
+    state: Karnataka
+    zip_code: 12345

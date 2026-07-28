@@ -1,0 +1,30 @@
+person:
+  name: Surya # double quotes or single quotes if you want to use special characters like # or : in the name
+  lname: "Gowda"
+  age: 35
+  gender: "M"
+  weight: 68.4
+  is_Asian: Yes
+
+  is_student: false
+  hobbies: # multiple hobbes can be listed in an array
+    - reading
+    - travelling
+    - hiking
+  address: # nested object
+    street: 123 Main St
+    city: mandya
+    state: Karnataka
+    zip_code: 12345
+hex: 0x12d6 #evaluates to 4822
+octal: 0o24432 # evaluates to 10522
+positive_infinity: .ing # evaluates to positive infinity
+negative_infinity: -.inf # evaluates to negative infinity
+invalidNumber: .NaN # evaluates to not a number
+null-value: null # evaluates to null
+null-value1: ~ # evaluates to null
+null-value2: # evaluates to null
+
+plainstyle: JohnDeo
+single_qutoe_style: "'text with : colon '"
+double_qutoe_style: "Line 1\nLine 2\nLine 3"

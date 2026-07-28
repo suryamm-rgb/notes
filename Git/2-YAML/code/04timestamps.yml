@@ -1,0 +1,5 @@
+someDate: 2013-07-23
+timestamp: 2001-12-15T02:59:43.1Z
+timestamp_with_timezone: 2001-12-15T02:59:43.10-05:00 #iso8601
+spacedtimedate: 2001-12-14 21:59:43.10 -05:00 #iso8601
+noTimeZone: 2001-12-15T02:59:43.10

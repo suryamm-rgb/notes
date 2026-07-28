@@ -1,0 +1,39 @@
+literal_block: |
+  This is a literal block.
+  It preserves line breaks and spaces.
+  Each line is treated as a separate line in the output.
+  so the output will be multiple lines of text.
+
+folded_block: >
+  This is a folded block.
+  It replaces line breaks with spaces.
+  so the output will be a single line of text.
+  and it can be used for long paragraphs that need to be wrapped.
+
+literal_block1: |-
+  This is a literal block.
+  It preserves line breaks and spaces.
+  Each line is treated as a separate line in the output.
+  so the output will be multiple lines of text.
+
+folded_block2: >+
+  This is a folded block.
+  It replaces line breaks with spaces.
+  so the output will be a single line of text.
+  and it can be used for long paragraphs that need to be wrapped.
+
+
+#comments in YAML
+#This is a comment
+key: value # This is an inline comment
+
+# multiline comments
+
+# This is a multiline comment
+# It spans multiple lines
+# Each line starts with a # symbol
+key1: value
+
+# use of comment in YAML
+# document Headers
+# section headers
