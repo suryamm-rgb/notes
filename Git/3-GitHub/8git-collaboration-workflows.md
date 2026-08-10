@@ -63,6 +63,7 @@ git branch -r
 ```
 
 > **Corrected commands** (common typos from the raw notes):
+>
 > - `git push origign navbar` → `git push origin navbar`
 > - `git push orogin priceing-table` → `git push origin pricing-table`
 > - `git branch -r pricing-tabel` → `git branch -r` (lists remote branches; there's no branch name argument needed)
@@ -95,6 +96,7 @@ git push origin main
 ```
 
 > **Corrected commands:**
+>
 > - `git switc h main` → `git switch main`
 > - `git pull orign main` → `git pull origin main`
 
@@ -110,7 +112,7 @@ Pull requests (PRs) are a feature built into platforms like **GitHub**, **GitLab
 - Provide a mechanism to **approve or reject** the work on a given branch.
 - Facilitate **discussion and feedback** on the specific commits in the branch.
 
-Essentially, a PR says: *"I have this new stuff I want to merge into `main` — what do you all think about it?"*
+Essentially, a PR says: _"I have this new stuff I want to merge into `main` — what do you all think about it?"_
 
 ### The Pull Request Workflow
 
@@ -157,6 +159,7 @@ git push origin main
 ```
 
 > **Corrected commands:**
+>
 > - `git mrege master` → `git merge main`
 > - `git switch aster` → `git switch main`
 > - `git merge m y0new-feature` → `git merge my-new-feature`
@@ -168,14 +171,14 @@ git push origin main
 
 ### What Is Forking?
 
-GitHub allows you to create a **personal copy of someone else's repository** — this copy is called a **fork** of the original. When you fork a repo, you're essentially asking GitHub: *"Make me my own copy of this repo, please."*
+GitHub allows you to create a **personal copy of someone else's repository** — this copy is called a **fork** of the original. When you fork a repo, you're essentially asking GitHub: _"Make me my own copy of this repo, please."_
 
 Just like pull requests, **forking is not a Git feature** — it's implemented by GitHub (and similarly by GitLab, Bitbucket, etc.), not by Git itself.
 
 A fork is different from a branch:
 
-- A **branch** lives inside the *same* repository, and anyone with write access can push to it directly.
-- A **fork** is a completely separate, independent copy of the *entire repository*, owned by you, under your own account — you can freely experiment without needing write access to the original ("upstream") repo.
+- A **branch** lives inside the _same_ repository, and anyone with write access can push to it directly.
+- A **fork** is a completely separate, independent copy of the _entire repository_, owned by you, under your own account — you can freely experiment without needing write access to the original ("upstream") repo.
 
 **Why forking is used:**
 
@@ -200,10 +203,10 @@ This workflow is extremely common on **large open-source projects**, where there
 Here's what a typical forking demonstration looks like, step by step:
 
 1. **Find the repository you want to contribute to** on GitHub (the "upstream" repo) — you have read access but not write access to it.
-2. **Click the "Fork" button** in the top-right of the repo page. GitHub creates a full copy of the repository under your own account, e.g. `github.com/your-username/project` — this is now *your* repository, and you have full write access to it.
+2. **Click the "Fork" button** in the top-right of the repo page. GitHub creates a full copy of the repository under your own account, e.g. `github.com/your-username/project` — this is now _your_ repository, and you have full write access to it.
 3. **Clone your fork** (not the original) to your local machine, so you have a working copy on your computer.
 4. **Make your changes locally** — typically on a new feature branch inside your fork.
-5. **Push your changes to your fork** (`origin`), *not* to the original repository — you don't have permission to push there directly.
+5. **Push your changes to your fork** (`origin`), _not_ to the original repository — you don't have permission to push there directly.
 6. **Open a pull request** from your fork's branch back to the original repository's `main` branch. The maintainers review it, discuss it, and decide whether to merge it in.
 7. **The original repo stays safe** the whole time — nothing you do in your fork can affect it until a maintainer approves and merges your pull request.
 
@@ -293,7 +296,7 @@ Running `git rebase` with the `-i` flag enters **interactive mode**, which lets 
 - Reorder commits
 - Squash/fixup commits together
 
-You need to specify **how far back** you want to rewrite history to. This is done by pointing to a commit reference — everything *after* that commit becomes editable.
+You need to specify **how far back** you want to rewrite history to. This is done by pointing to a commit reference — everything _after_ that commit becomes editable.
 
 Also note: you are **not** rebasing onto another branch. Instead, you're rebasing a series of commits **onto the same `HEAD` they are currently based on** — you're just reordering/editing the commits that already exist, not moving them onto a different base.
 
@@ -315,14 +318,14 @@ pick k1l2m3n Fix typo in pricing table
 
 You edit the word in front of each commit to tell Git what to do with it:
 
-| Command | Short | What it does |
-|---|---|---|
-| `pick` | `p` | Keep the commit as-is |
-| `reword` | `r` | Keep the commit's changes, but edit its commit message |
-| `edit` | `e` | Pause at this commit so you can amend it (change file content) |
-| `squash` | `s` | Combine this commit into the previous one, **and** merge their commit messages (prompts you to edit the combined message) |
-| `fixup` | `f` | Same as `squash`, but **discards** this commit's message entirely, keeping only the previous commit's message |
-| `drop` | `d` | Delete the commit entirely |
+| Command  | Short | What it does                                                                                                              |
+| -------- | ----- | ------------------------------------------------------------------------------------------------------------------------- |
+| `pick`   | `p`   | Keep the commit as-is                                                                                                     |
+| `reword` | `r`   | Keep the commit's changes, but edit its commit message                                                                    |
+| `edit`   | `e`   | Pause at this commit so you can amend it (change file content)                                                            |
+| `squash` | `s`   | Combine this commit into the previous one, **and** merge their commit messages (prompts you to edit the combined message) |
+| `fixup`  | `f`   | Same as `squash`, but **discards** this commit's message entirely, keeping only the previous commit's message             |
+| `drop`   | `d`   | Delete the commit entirely                                                                                                |
 
 ### Rewording a Commit
 
@@ -399,6 +402,180 @@ git push --force-with-lease origin your-branch-name
 
 ---
 
+## 8. Git Tags — Marking Important Moments in History
+
+### Understanding Git Tags
+
+Tags are **pointers that refer to a particular point in Git history**. We can mark a particular moment in time with a tag — tags are most often used to **mark version releases** in a project.
+
+Think of a tag like a branch reference that **does not change**. Once a tag is created, it always refers to the same commit — it's just a fixed label for a commit, unlike a branch pointer which moves forward as new commits are added.
+
+### The Two Types of Tags
+
+There are two types of Git tags: **lightweight** and **annotated**.
+
+- **Lightweight tags** — just a name/label that points to a particular commit. No extra metadata.
+- **Annotated tags** — store extra metadata, including the tagger's name and email, the date, and a tagging message. (Similar to a commit — recommended for anything you plan to share, like release tags.)
+
+---
+
+### Semantic Versioning
+
+The **Semantic Versioning** (SemVer) spec outlines a standardized versioning system for software releases. It provides a consistent way for developers to give meaning to their software releases.
+
+A version number consists of **three numbers separated by periods**:
+
+```
+2 . 4 . 1
+│   │   │
+│   │   └── Patch release
+│   └────── Minor release
+└────────── Major release
+```
+
+**Initial release**
+
+Typically, the first release of a project is `1.0.0`.
+
+**Patch release — `1.0.1`**
+
+Patch releases normally do not contain new features or significant changes. They typically signify bug fixes and other changes that do not impact how the code is used.
+
+**Minor release — `1.1.0`**
+
+Minor releases signify that new features or functionality have been added, but the project is still **backwards compatible** — no breaking changes. The new functionality is optional and should not force users to rewrite their own code.
+
+**Major release — `2.0.0`**
+
+Major releases signify significant changes that are **no longer backwards compatible**. Features may be removed or changed substantially.
+
+---
+
+### Viewing Tags
+
+`git tag` will print a list of all the tags in the current repository:
+
+```bash
+git tag
+```
+
+We can search for tags that match a particular pattern using `git tag -l` and passing in a wildcard pattern. For example, this prints a list of all tags that include "beta" in their name:
+
+```bash
+git tag -l '*beta*'
+```
+
+Other examples:
+
+```bash
+git tag -l          # list all tags
+git tag -l "*17*"   # list tags matching a pattern, e.g. containing "17"
+```
+
+---
+
+### Comparing Tags With `git diff`
+
+We can check out a specific tag and use `git diff` to compare it against another tag, branch, or commit:
+
+```bash
+git checkout 15.3.1
+git tag
+git diff 15.3.1 16.0.0
+```
+
+This shows exactly what changed between the two tagged points in history — useful for release notes or auditing what a version bump actually contains.
+
+---
+
+### Creating Lightweight Tags
+
+To create a lightweight tag, use `git tag <tagname>`. By default, Git will create the tag referring to the commit that `HEAD` is currently referencing.
+
+```bash
+git tag <tagname>
+```
+
+---
+
+### Creating Annotated Tags
+
+Use `git tag -a` to create a new annotated tag. Git will then open your default text editor and prompt you for additional information (similar to `git commit`).
+
+```bash
+git tag -a <tagname>
+```
+
+We can also use the `-m` option to pass a message directly and skip opening the text editor:
+
+```bash
+git tag -a <tagname> -m "Release version 2.0.0"
+```
+
+---
+
+### Tagging Previous Commits
+
+So far we've seen how to tag the commit that `HEAD` references. We can also tag an **older commit** by providing its commit hash:
+
+```bash
+git tag -a <tagname> <commit-hash>
+
+# Also works for lightweight tags:
+git tag <tagname> <commit-hash>
+```
+
+---
+
+### Moving / Forcing Tags
+
+Git will refuse (and yell at you) if you try to reuse a tag name that already refers to a commit — this prevents you from accidentally moving a tag and rewriting release history. If you use the `-f` (force) option, you can force the tag to move/be reassigned to a new commit:
+
+```bash
+git tag -f <tagname> <new-commit-hash>
+```
+
+> ⚠️ Use this carefully — if the tag has already been pushed and others have pulled it, moving it locally can cause confusion, since remote and local tags will now disagree until you force-push the change too.
+
+---
+
+### Deleting Tags
+
+To delete a tag locally, use `-d`:
+
+```bash
+git tag -d <tagname>
+```
+
+To delete a tag that has already been pushed to a remote, you need to delete it there separately — deleting it locally does **not** remove it from the remote:
+
+```bash
+git push origin --delete <tagname>
+
+# Alternative syntax:
+git push origin :refs/tags/<tagname>
+```
+
+---
+
+### Pushing Tags
+
+By default, `git push` **does not** transfer tags to remote servers — tags are not pushed automatically along with commits.
+
+To push a single tag:
+
+```bash
+git push origin <tagname>
+```
+
+If you have a lot of tags you want to push up at once, use the `--tags` option with `git push`. This transfers **all** of your local tags to the remote server that aren't already there:
+
+```bash
+git push --tags
+```
+
+---
+
 ## Extra Points (Beyond the Original Notes)
 
 - **Naming conventions:** Many teams prefix feature branches for clarity, e.g. `feature/navbar`, `bugfix/login-error`, `hotfix/critical-patch`.
@@ -415,7 +592,10 @@ git push --force-with-lease origin your-branch-name
   git push origin --delete navbar  # delete remote branch
   ```
 - **Rebasing vs. merging:** As an alternative to `git merge`, `git rebase` replays your commits on top of the latest `main`, producing a linear history — but should generally be avoided on shared/public branches since it rewrites commit history.
+- **Checking out a tag = detached HEAD:** When you `git checkout <tagname>`, you're not on a branch anymore — you're in a "detached HEAD" state. If you want to make new commits from that point, create a branch first: `git switch -c new-branch-name <tagname>`.
+- **Tags vs. releases:** On GitHub, a "Release" is a platform feature built on top of a Git tag — it lets you attach release notes, binaries, and changelogs to a tag. Like forking and pull requests, Releases are a GitHub feature, not a native Git concept.
+- **Pre-release tags:** SemVer also supports pre-release identifiers for versions still in testing, e.g. `2.0.0-beta.1` or `2.0.0-rc.1` (release candidate), which sort before the final `2.0.0`.
 
 ---
 
-*Note: This guide assumes `main` as the default branch name, which is the modern GitHub/GitLab standard (replacing the older `master` convention).*
+_Note: This guide assumes `main` as the default branch name, which is the modern GitHub/GitLab standard (replacing the older `master` convention)._
